@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>Kalkulator</title>
+
+  <!-- Font DM Sans (teks) dan DM Mono (angka) dari Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@300;400&family=DM+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+
+  <!-- Hubungkan ke file CSS -->
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <div class="aplikasi">
+
+    <!-- Bagian atas: tombol Riwayat dan Salin -->
+    <div class="atas">
+      <button id="btn-riwayat">Riwayat</button>
+      <button id="btn-salin">Salin</button>
+    </div>
+
+    <!-- Layar: baris atas = ekspresi, baris bawah = hasil -->
+    <div class="layar">
+      <div class="ekspresi" id="ekspresi"></div>
+      <div class="hasil" id="hasil">0</div>
+    </div>
+
+    <!-- Papan tombol. Atribut data-tombol menyimpan "nilai" tiap tombol,
+         dibaca oleh JavaScript saat tombol ditekan. -->
+    <div class="papan-tombol" id="papan-tombol">
+      <button class="fungsi merah" data-tombol="C">C</button>
+      <button class="fungsi" data-tombol="(">(</button>
+      <button class="fungsi" data-tombol=")">)</button>
+      <button class="operator" data-tombol="÷">÷</button>
+
+      <button data-tombol="7">7</button>
+      <button data-tombol="8">8</button>
+      <button data-tombol="9">9</button>
+      <button class="operator" data-tombol="×">×</button>
+
+      <button data-tombol="4">4</button>
+      <button data-tombol="5">5</button>
+      <button data-tombol="6">6</button>
+      <button class="operator" data-tombol="-">−</button>
+
+      <button data-tombol="1">1</button>
+      <button data-tombol="2">2</button>
+      <button data-tombol="3">3</button>
+      <button class="operator" data-tombol="+">+</button>
+
+      <button class="fungsi" data-tombol="%">%</button>
+      <button data-tombol="0">0</button>
+      <button data-tombol=".">,</button>
+      <button class="fungsi" data-tombol="hapus">⌫</button>
+
+      <button class="sama-dengan" data-tombol="=">=</button>
+    </div>
+
+    <!-- Panel riwayat (tersembunyi sampai tombol Riwayat ditekan) -->
+    <div class="riwayat" id="riwayat">
+      <div class="riwayat-atas">
+        <h2>Riwayat</h2>
+        <div>
+          <button id="btn-hapus-riwayat">Hapus</button>
+          <button id="btn-tutup-riwayat">Tutup</button>
+        </div>
+      </div>
+      <div class="daftar-riwayat" id="daftar-riwayat"></div>
+    </div>
+
+  </div>
+
+  <!-- Hubungkan ke file JavaScript (ditaruh paling bawah agar elemen di atas sudah ada) -->
+  <script src="script.js"></script>
+</body>
+</html>

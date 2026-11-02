@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Kuis Pilihan Ganda</title>
+
+  <style>
+    * {margin: 0; padding: 0; box-sizing: border-box; font-family: 'Inter', sans-serif;}
+    body {background: #0e1424; color: #fff; display: flex; justify-content: center; align-items: center; min-height: 100vh; padding: 20px;}
+
+    .container {
+      width: 100%; max-width: 760px; background: #141b2f; padding: 30px;
+      border-radius: 18px; box-shadow: 0 0 25px rgba(0,0,0,0.4);
+    }
+
+    h1 {font-size: 26px; margin-bottom: 10px;}
+    .subtitle {color:#aeb8d4; font-size: 14px; margin-bottom: 20px;}
+
+    .question {font-size: 20px; margin-bottom: 20px; font-weight: 600;}
+
+    .choices {display: grid; gap: 12px;}
+    .choice {
+      background: #0f1729; padding: 14px; border-radius: 12px;
+      border: 1px solid rgba(255,255,255,0.08);
+      cursor: pointer; transition: .2s; font-size: 15px;
+      text-align: left;
+    }
+    .choice:hover {border-color: #00e5ff; transform: translateY(-2px);}
+    .choice.selected {border-color: #00e5ff; background: #162339;}
+    
+    
+
+    .controls {display: flex; justify-content: space-between; margin-top: 22px; align-items: center;}
+    button {
+      padding: 10px 18px; border-radius: 10px; border: none; cursor: pointer;
+      font-weight: 600; font-size: 15px; transition: 0.2s;
+    }
+    .primary {background: #00e5ff; color: #00252e;}
+    .ghost {background: transparent; border: 1px solid #2a334d; color: #aeb8d4;}
+    button:hover {opacity: .85;}
+
+    #resultScreen {display: none; text-align: center; margin-top: 10px;}
+    #finalScore {font-size: 48px; color: #00e5ff; font-weight: 800; margin: 12px 0;}
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>Kuis Pilihan Ganda</h1>
+    <div class="subtitle">Jawab semua pertanyaan, hasil ditampilkan di akhir.</div>
+
+    <div id="quizScreen">
+      <div id="question" class="question">Memuat...</div>
+      <div id="choices" class="choices"></div>
+
+      <div class="controls">
+        <button id="prevBtn" class="ghost">Sebelumnya</button>
+        <div id="progressText" style="color:#aeb8d4; font-size:14px;"></div>
+        <button id="nextBtn" class="primary">Berikutnya</button>
+      </div>
+    </div>
+
+    <div id="resultScreen">
+      <h2>Hasil Akhir</h2>
+      <div id="finalScore">0 / 0</div>
+      <p id="finalMessage" class="subtitle"></p>
+      <button id="restartBtn" class="primary" style="margin-top:15px;">Main Lagi</button>
+    </div>
+  </div>
+
+  <script>
+    const QUESTIONS = [
+      { q: 'Siapa penemu lampu pijar?', c: ['Nikola Tesla','Thomas Edison','Alexander Bell','Isaac Newton'], a: 1 },
+      { q: 'Ibu kota Indonesia adalah?', c: ['Bandung','Medan','Jakarta','Surabaya'], a: 2 },
+      { q: 'Bahasa pemrograman untuk web browser?', c: ['Java','Python','JavaScript','C++'], a: 2 },
+      { q: 'Planet terbesar?', c: ['Saturnus','Jupiter','Bumi','Mars'], a: 1 }
+    ];
+
+    let index = 0;
+    let answers = Array(QUESTIONS.length).fill(null);
+
+    const qEl = document.getElementById('question');
+    const choicesEl = document.getElementById('choices');
+    const nextBtn = document.getElementById('nextBtn');
+    const prevBtn = document.getElementById('prevBtn');
+    const progressText = document.getElementById('progressText');
+    const quizScreen = document.getElementById('quizScreen');
+    const resultScreen = document.getElementById('resultScreen');
+    const finalScore = document.getElementById('finalScore');
+    const finalMessage = document.getElementById('finalMessage');
+
+    function loadQuestion() {
+      const q = QUESTIONS[index];
+      qEl.textContent = q.q;
+      progressText.textContent = `${index+1} / ${QUESTIONS.length}`;
+
+      choicesEl.innerHTML = '';
+      q.c.forEach((txt, i) => {
+        const btn = document.createElement('div');
+        btn.className = 'choice';
+        btn.textContent = txt;
+        btn.onclick = () => select(i);
+        if (answers[index] === i) btn.classList.add('selected');
+        choicesEl.appendChild(btn);
+      });
+
+      prevBtn.disabled = index === 0;
+      nextBtn.textContent = (index === QUESTIONS.length - 1) ? 'Selesai' : 'Berikutnya';
+    }
+
+    function select(i) {
+      answers[index] = i;
+      document.querySelectorAll('.choice').forEach(c => c.classList.remove('selected'));
+      document.querySelectorAll('.choice')[i].classList.add('selected');
+    }
+
+    nextBtn.onclick = () => {
+      if (answers[index] === null) return alert('Pilih jawaban dulu!');
+      if (index < QUESTIONS.length - 1) {
+        index++;
+        loadQuestion();
+      } else finish();
+    };
+
+    prevBtn.onclick = () => {
+      if (index > 0) index--;
+      loadQuestion();
+    };
+
+    function finish() {
+      let correct = 0;
+      QUESTIONS.forEach((q, i) => {
+        if (answers[i] === q.a) correct++;
+      });
+
+      finalScore.textContent = `${correct} / ${QUESTIONS.length}`;
+      finalMessage.textContent = correct === QUESTIONS.length ? 'Sempurna!' : correct >= 2 ? 'Bagus!' : 'Coba lagi!';
+
+      quizScreen.style.display = 'none';
+      resultScreen.style.display = 'block';
+    }
+
+    document.getElementById('restartBtn').onclick = () => {
+      index = 0;
+      answers.fill(null);
+      resultScreen.style.display = 'none';
+      quizScreen.style.display = 'block';
+      loadQuestion();
+    };
+
+    loadQuestion();
+  </script>
+</body>
+</html>

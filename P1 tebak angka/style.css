@@ -1,0 +1,116 @@
+
+body {
+    font-family: Arial, sans-serif;
+    background-color: #282a36; /* Latar belakang gelap */
+    color: #f8f8f2; /* Teks terang */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    margin: 0;
+}
+
+.container {
+    text-align: center;
+    padding: 20px;
+}
+
+h1 {
+    color: #50fa7b; /* Judul utama hijau */
+    font-size: 2.5em;
+    margin-bottom: 5px;
+}
+
+p.instruction {
+    margin-top: 0;
+    margin-bottom: 15px;
+    font-size: 1.05em;
+}
+
+.card {
+    background-color: #383a59; /* Latar belakang kartu gelap */
+    padding: 40px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
+    width: 350px;
+}
+
+h2 {
+    font-size: 1.8em;
+    margin-top: 0;
+    margin-bottom: 25px;
+}
+
+/* Styling untuk Input Group */
+.input-group {
+    display: flex;
+    margin-bottom: 20px;
+}
+
+#guessInput {
+    flex-grow: 1;
+    padding: 10px;
+    border: none;
+    border-radius: 5px 0 0 5px;
+    font-size: 1em;
+    background-color: #44475a; /* Warna latar belakang input */
+    color: #f8f8f2;
+    text-align: center;
+}
+
+#guessInput:focus {
+    outline: 2px solid #50fa7b;
+}
+
+#checkButton {
+    background-color: #50fa7b; /* Tombol Tebak hijau */
+    color: #282a36;
+    border: none;
+    padding: 10px 20px;
+    font-size: 1em;
+    border-radius: 0 5px 5px 0;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+#checkButton:hover {
+    background-color: #69ff94;
+}
+
+/* Styling untuk Area Pesan Hasil */
+#resultMessage {
+    background-color: #44475a; /* Latar belakang untuk pesan hasil */
+    padding: 15px;
+    border-radius: 5px;
+    min-height: 30px; /* Memastikan ada ruang */
+    text-align: left;
+    margin-bottom: 20px;
+}
+
+/* Styling untuk Tombol Main Lagi */
+#playAgainButton {
+    background-color: #44475a; /* Tombol Main Lagi abu-abu gelap */
+    color: #f8f8f2;
+    border: none;
+    padding: 10px 20px;
+    font-size: 1.1em;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+#playAgainButton:hover {
+    background-color: #6272a4;
+}
+
+.hidden {
+    display: none;
+}
+
+/* Teks hasil salah meniru tampilan gambar */
+.error-message {
+    color: #ff79c6; /* Warna merah muda/ungu untuk teks error */
+    font-weight: bold;
+}

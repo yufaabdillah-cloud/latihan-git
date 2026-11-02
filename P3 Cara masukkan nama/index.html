@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Input Limit 60 Karakter</title>
+    <style>
+        body { font-family: sans-serif; margin: 20px; }
+        #tampilanNama { color: darkblue; }
+        .info { font-size: 0.8rem; color: gray; }
+    </style>
+</head>
+<body>
+
+    <h1 id="tampilanNama">Halo!</h1>
+    <label for="nama">Masukkan Nama:</label>
+    <input type="text" id="nama" maxlength="60">
+    <button id="btnSubmit">Submit</button>
+
+    <script>
+    const heading = document.getElementById("tampilanNama");
+    const input = document.getElementById("nama");
+    const tombol = document.getElementById("btnSubmit");
+
+const namaInput = () => {
+if (input.value.trim() !== "") {
+    heading.textContent = `Halo, ${input.value}!`;
+    input.value= "";
+} else {
+alert("Nama tidak boleh kosong");
+}
+};
+
+tombol.addEventListener("click", namaInput);
+
+input.addEventListener("keydown", (e) => {
+if (e.key === "Enter") {
+namaInput();
+}
+});
+
+
+    </script>
+
+</body>
+</html>

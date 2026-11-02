@@ -1,0 +1,191 @@
+/* ===== 1. Warna (variabel) =====
+   Ubah warna di sini, seluruh kalkulator ikut berubah. */
+:root {
+  --latar: #1a120d;
+  --panel: #241913;
+  --tombol: #2e211a;
+  --tombol-fungsi: #3a2b22;
+  --teks: #f3e6da;
+  --teks-redup: #9c8575;
+  --aksen: #e8955a;
+  --merah: #e27b6a;
+
+  /* Beri jarak dari poni/tepi layar HP */
+  padding-top: env(safe-area-inset-top, 0px);
+  padding-bottom: env(safe-area-inset-bottom, 0px);
+  box-sizing: border-box;
+}
+
+/* ===== 2. Pengaturan dasar ===== */
+* {
+  box-sizing: border-box;
+  -webkit-tap-highlight-color: transparent; /* hilangkan kedip biru di HP */
+}
+
+html, body {
+  height: 100%;
+  margin: 0;
+}
+
+body {
+  background: var(--latar);
+  color: var(--teks);
+  font-family: 'DM Sans', system-ui, sans-serif;
+  display: flex;
+  justify-content: center; /* taruh kalkulator di tengah layar lebar */
+}
+
+/* Wadah utama kalkulator */
+.aplikasi {
+  width: 100%;
+  max-width: 420px;
+  height: 100%;
+  display: flex;
+  flex-direction: column; /* susun atas -> layar -> tombol */
+  position: relative;     /* agar panel riwayat bisa menutupi seluruh area ini */
+}
+
+/* ===== 3. Bagian atas (Riwayat & Salin) ===== */
+.atas {
+  display: flex;
+  justify-content: space-between;
+  padding: 14px 18px 0;
+}
+
+.atas button {
+  background: none;
+  border: 0;
+  color: var(--teks-redup);
+  font: 500 14px 'DM Sans', sans-serif;
+  padding: 8px 6px;
+  cursor: pointer;
+}
+
+/* ===== 4. Layar ===== */
+.layar {
+  flex: 1; /* ambil semua sisa ruang di atas tombol */
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end; /* teks menempel ke bawah */
+  align-items: flex-end;     /* teks rata kanan */
+  gap: 8px;
+  padding: 12px 24px 18px;
+  overflow: hidden;
+}
+
+.ekspresi {
+  font: 300 30px 'DM Mono', monospace;
+  color: var(--teks-redup);
+  text-align: right;
+  word-break: break-all; /* teks panjang turun ke baris baru */
+  max-height: 110px;
+  overflow: hidden;
+}
+
+.hasil {
+  font: 400 56px 'DM Mono', monospace;
+  min-height: 66px;
+  text-align: right;
+  word-break: break-all;
+}
+
+/* Kelas tambahan yang dipasang JavaScript sesuai panjang hasil */
+.hasil.sedang { font-size: 40px; }
+.hasil.kecil  { font-size: 30px; }
+.hasil.error  { font: 400 24px 'DM Sans', sans-serif; color: var(--merah); }
+
+/* ===== 5. Papan tombol ===== */
+.papan-tombol {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr); /* 4 kolom sama lebar */
+  gap: 10px;
+  padding: 16px 16px 20px;
+  background: var(--panel);
+  border-radius: 28px 28px 0 0;
+}
+
+.papan-tombol button {
+  height: 68px;
+  border: 0;
+  border-radius: 22px;
+  background: var(--tombol);
+  color: var(--teks);
+  font: 400 28px 'DM Mono', monospace;
+  cursor: pointer;
+  transition: transform 0.08s; /* animasi kecil saat ditekan */
+}
+
+/* Efek tombol "tenggelam" saat ditekan */
+.papan-tombol button:active {
+  transform: scale(0.94);
+  filter: brightness(1.25);
+}
+
+.papan-tombol .fungsi   { background: var(--tombol-fungsi); color: var(--aksen); }
+.papan-tombol .operator { background: var(--tombol-fungsi); color: var(--aksen); font-size: 32px; }
+.papan-tombol .merah    { color: var(--merah); }
+
+/* Tombol "=" memanjang selebar semua kolom */
+.papan-tombol .sama-dengan {
+  grid-column: 1 / -1;
+  height: 62px;
+  background: var(--aksen);
+  color: var(--latar);
+}
+
+/* ===== 6. Panel riwayat ===== */
+.riwayat {
+  position: absolute;
+  inset: 0;            /* menutupi seluruh .aplikasi */
+  background: var(--latar);
+  display: none;       /* tersembunyi dulu */
+  flex-direction: column;
+  padding: 14px 18px;
+  z-index: 5;
+}
+
+.riwayat.tampil { display: flex; } /* JavaScript menambah kelas ini untuk membuka */
+
+.riwayat-atas {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 10px;
+}
+
+.riwayat-atas h2 { margin: 0; font-size: 18px; }
+
+.riwayat-atas button {
+  background: none;
+  border: 0;
+  color: var(--aksen);
+  font: 500 14px 'DM Sans', sans-serif;
+  padding: 8px 6px;
+  cursor: pointer;
+}
+
+.daftar-riwayat { flex: 1; overflow-y: auto; }
+
+.item-riwayat {
+  padding: 14px 4px;
+  border-bottom: 1px solid var(--tombol);
+  text-align: right;
+  cursor: pointer;
+}
+
+.item-riwayat small {
+  display: block;
+  font: 300 15px 'DM Mono', monospace;
+  color: var(--teks-redup);
+  word-break: break-all;
+}
+
+.item-riwayat b {
+  font: 400 26px 'DM Mono', monospace;
+}
+
+.kosong {
+  color: var(--teks-redup);
+  text-align: center;
+  margin-top: 60px;
+}

@@ -1,0 +1,18 @@
+body {
+    margin: 0;
+}
+
+#myBox {
+    background-color: lightblue;
+    width: 200px;
+    height: 200px;
+    font-size: 7.5rem;
+    
+    /* Mengatur isi kotak agar berada tepat di tengah */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    
+    /* Penting: Digunakan agar posisi top dan left bisa diubah via JavaScript */
+    position: relative; 
+}
