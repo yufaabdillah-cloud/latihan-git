@@ -1,0 +1,128 @@
+/* Mengatur tampilan dasar seluruh halaman */
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background-color: #101827;
+    color: white;
+    line-height: 1.6;
+}
+
+/* Mengatur bagian navigasi di atas */
+header {
+    background-color: #18243a;
+    padding: 20px 8%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+/* Mengatur tulisan logo */
+.logo {
+    color: #65e6c2;
+    margin: 0;
+}
+
+/* Mengatur link navigasi */
+nav a {
+    color: white;
+    text-decoration: none;
+    margin-left: 20px;
+}
+
+/* Warna link berubah ketika disentuh mouse */
+nav a:hover {
+    color: #65e6c2;
+}
+
+/* Mengatur semua bagian utama */
+section {
+    padding: 70px 8%;
+}
+
+/* Mengatur tulisan kecil berwarna hijau */
+.label {
+    color: #65e6c2;
+    font-weight: bold;
+    letter-spacing: 2px;
+}
+
+/* Mengatur judul utama */
+h1 {
+    font-size: 42px;
+}
+
+/* Memberi warna khusus pada nama */
+h1 span {
+    color: #65e6c2;
+}
+
+/* Mengatur paragraf agar tidak terlalu lebar */
+section p {
+    max-width: 650px;
+    color: #c5ccda;
+}
+
+/* Mengatur tombol */
+button {
+    background-color: #65e6c2;
+    color: #101827;
+    border: none;
+    padding: 12px 22px;
+    border-radius: 6px;
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+/* Mengubah tampilan tombol ketika mouse berada di atasnya */
+button:hover {
+    background-color: #45c9a5;
+}
+
+/* Memberi jarak dan garis pemisah pada bagian About dan Projects */
+#about,
+#projects {
+    border-top: 1px solid #344158;
+}
+
+/* Membuat daftar project berjajar */
+.daftar-project {
+    display: flex;
+    gap: 20px;
+    flex-wrap: wrap;
+}
+
+/* Mengatur kotak setiap project */
+.project {
+    background-color: #18243a;
+    padding: 20px;
+    border-radius: 10px;
+    width: 220px;
+}
+
+/* Mengatur footer */
+footer {
+    background-color: #18243a;
+    text-align: center;
+    padding: 20px;
+}
+
+/* Mengatur tampilan pada layar HP */
+@media (max-width: 600px) {
+    header {
+        flex-direction: column;
+        gap: 15px;
+    }
+
+    nav a {
+        margin: 0 8px;
+    }
+
+    h1 {
+        font-size: 32px;
+    }
+
+    section {
+        padding: 50px 8%;
+    }
+}

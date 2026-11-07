@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <!-- Mengatur karakter agar tulisan tampil dengan benar -->
+    <meta charset="UTF-8">
+
+    <!-- Membuat tampilan menyesuaikan ukuran layar HP dan laptop -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>My First Website</title>
+
+    <!-- Menghubungkan file CSS -->
+    <link rel="stylesheet" href="style.css">
+
+    <!-- Menghubungkan file JavaScript -->
+    <script src="script.js" defer></script>
+</head>
+<body>
+
+    <!-- BAGIAN NAVIGASI -->
+    <header>
+        <h2 class="logo">My Portfolio</h2>
+
+        <nav>
+            <a href="#home">Home</a>
+            <a href="#about">About</a>
+            <a href="#projects">Projects</a>
+        </nav>
+    </header>
+
+    <!-- BAGIAN HOME -->
+    <section id="home">
+        <p class="label">HALO, SELAMAT DATANG!</p>
+
+        <h1>Halo, saya <span>Yufa Abdillah Jamal</span></h1>
+
+        <h2>Beginner Developer</h2>
+
+        <p>
+            Saya adalah developer pemula yang sedang belajar membuat website
+            menggunakan HTML, CSS, dan JavaScript.
+            Saya ingin terus belajar dan membuat proyek baru.
+        </p>
+
+        <!-- Tombol ini akan menjalankan JavaScript -->
+        <button id="tombolHalo">Klik Saya</button>
+
+        <!-- Pesan dari JavaScript akan muncul di sini -->
+        <p id="pesan"></p>
+    </section>
+
+    <!-- BAGIAN ABOUT -->
+    <section id="about">
+        <p class="label">KENALI SAYA</p>
+
+        <h2>About Me</h2>
+
+        <p>
+            Saya sedang mempelajari dasar-dasar web development.
+            HTML digunakan untuk membuat struktur website,
+            CSS digunakan untuk mengatur tampilannya,
+            dan JavaScript digunakan untuk membuat website menjadi interaktif.
+        </p>
+    </section>
+
+    <!-- BAGIAN PROJECTS -->
+    <section id="projects">
+        <p class="label">HASIL LATIHAN SAYA</p>
+
+        <h2>My Projects</h2>
+
+        <div class="daftar-project">
+
+            <div class="project">
+                <h3>Project 1: Portfolio</h3>
+                <p>Website sederhana untuk memperkenalkan diri.</p>
+            </div>
+
+            <div class="project">
+                <h3>Project 2: Calculator</h3>
+                <p>Kalkulator sederhana yang dibuat dengan JavaScript.</p>
+            </div>
+
+            <div class="project">
+                <h3>Project 3: Coming Soon</h3>
+                <p>Proyek berikutnya akan saya tambahkan di sini.</p>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- BAGIAN FOOTER -->
+    <footer>
+        <p>© <span id="tahun"></span> Nama Kamu. Dibuat dengan semangat belajar.</p>
+    </footer>
+
+</body>
+</html>
